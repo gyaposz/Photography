@@ -1,0 +1,55 @@
+body {
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
+  padding: 0rem 1rem 3rem;
+  margin: 0 auto;
+  height: 100rem;
+}
+
+.header {
+  align-content: center;
+  background-color: wheat;
+  height: 10rem;
+  opacity: 1;
+}
+
+.headerHidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  z-index: 0;
+}
+
+.headerShown {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+  z-index: 1000;
+}
+
+.sticky {
+  position: fixed;
+  background-color: wheat;
+  top: 0rem;
+  width: 100%;
+  z-index: 1000;
+}
+
+.slideImage {
+  max-height: 50rem;
+  width: auto;
+}
+
+.separator {
+  padding-top: 1rem;
+}
+
+.hamburgerIcon {
+  color: "#fff";
+  width: "150rem";
+  height: "150rem";
+}
+
+.react-icons {
+  vertical-align: middle;
+}
