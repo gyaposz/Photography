@@ -2,6 +2,7 @@
 import React from "react"
 import HamburgerIcon from "./HamburgerIcon"
 import Separator from "../util/Separator"
+import { format } from "util"
 
 /**
  * Properties for {@link ConfigurableHeader}.
@@ -26,6 +27,14 @@ interface ConfigurableHeaderProps {
      * Regular header ignores this object. (Required)
      */
     followedObject : string
+    /**
+     * whether menu is currently open or not. (Required)
+     */
+     isMenuOpen : boolean
+    /**
+     * Callback that must be called when menu gets open. (Required)
+     */
+    onMenuChange : Function
 }
 
 /** Class for headers that are shown */
@@ -68,15 +77,19 @@ export default class ConfigurableHeader
      * @returns the rendered content
      */
     render() : React.ReactNode {
-        var extraClass = SHOWN_CLASS_NAME
-            + (this.props.stickyHeader ? " " + STICKY_CLASS_NAME + " " : " ")
+        var className = format("%s %s %s",
+            this.props.class,
+            SHOWN_CLASS_NAME,
+            (this.props.stickyHeader ? STICKY_CLASS_NAME : "")) 
         return (
-            <div className={this.props.class + extraClass} id={this.props.id}> 
+            <div className={className} id={this.props.id}> 
                 <Separator />
                 <div>
                     <a href="https://www.tomisabetti.com">TOMISA BETTI</a>
                 </div>
-                <HamburgerIcon />
+                <HamburgerIcon isMenuOpen={this.props.isMenuOpen}
+                    onMenuChange={this.props.onMenuChange}
+                    id={(this.props.stickyHeader ? STICKY_CLASS_NAME : "") + "icon"} />
             </div>
         )
     }
@@ -89,6 +102,7 @@ export default class ConfigurableHeader
             var stickyHeader = document.getElementById(this.props.id)
             var content = document.getElementById(this.props.followedObject)
             var contentTop = content?.offsetTop || 0
+            // First setting before any event happens.
             this.scrollHandler(contentTop, stickyHeader)
     
             window.onscroll = e => this.scrollHandler(contentTop, stickyHeader)

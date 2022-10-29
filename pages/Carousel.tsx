@@ -31,7 +31,9 @@ export default class Carousel extends React.Component {
                                fixedHeight: "40rem",
                                autoWidth: true,
                                omitEnd: true,
-                               gap: "5rem"
+                               gap: "5rem",
+                               arrows: false,
+                               pagination: false
                   }}>
                 <SplideTrack>
                     <Slide slideNumber={1}/>
